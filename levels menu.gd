@@ -30,6 +30,7 @@ func on_tap(n):
 	self.set_deferred("visible",false)
 	$"../level".set_deferred("visible",true)
 	$"../level".prepare_level()
+	Globals.hide_bg()
 	print(str(n))
 	
 

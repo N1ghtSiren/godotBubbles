@@ -6,10 +6,14 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	Globals.background = $Background
+	
 	$"play menu".hide()
 	$"levels menu".hide()
 	$"level".hide()
 	$"pause menu".hide()
+	$"settings menu".hide()
 	#load_game()
 	#save_game()
 	pass # Replace with function body.
@@ -25,7 +29,8 @@ func _on_button_play_main_menu_pressed():
 	pass
 
 func _on_button_settings_main_menu_pressed():
-	#$"main menu".set_deferred("visible",false)
+	$"main menu".set_deferred("visible",false)
+	$"settings menu".set_deferred("visible",true)
 	pass # Replace with function body.
 
 func _on_button_quit_main_menu_pressed():
@@ -79,3 +84,9 @@ func load_game():
 	Globals.money_blue = node_data["money_blue"]
 	
 	save_game.close()
+
+
+func _on_button_back_to_main_menu_pressed():
+	$"main menu".set_deferred("visible",true)
+	$"settings menu".set_deferred("visible",false)
+	pass # Replace with function body.

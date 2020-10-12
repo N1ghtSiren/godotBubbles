@@ -15,21 +15,17 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
-func _on_button_continue_pressed():
-	self.set_deferred("visible",false)
-	$"../level".set_deferred("visible",true)
-	Globals.hide_bg()
+func _on_button_music_decrease_pressed():
 	pass # Replace with function body.
 
 
-func _on_button_market2_pressed():
-	
+func _on_button_music_increase_pressed():
 	pass # Replace with function body.
 
 
-func _on_button_to_main_menu_pressed():
-	self.set_deferred("visible",false)
-	$"../main menu".set_deferred("visible",true)
-	Globals.show_bg()
+func _on_button_pop_left_pressed():
+	pass # Replace with function body.
+
+
+func _on_button_pop_right_pressed():
 	pass # Replace with function body.

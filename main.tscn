@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://things/comicsans.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://levels menu.gd" type="Script" id=2]
 [ext_resource path="res://main.gd" type="Script" id=3]
 [ext_resource path="res://level.gd" type="Script" id=4]
 [ext_resource path="res://pause menu.gd" type="Script" id=5]
+[ext_resource path="res://Background.gd" type="Script" id=6]
+[ext_resource path="res://settings menu.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -50,6 +52,12 @@ extents = Vector2( 80, 30 )
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 140, 30 )
 
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 60, 35 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 30, 35 )
+
 [node name="main" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -62,6 +70,9 @@ color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource( 6 )
 
 [node name="main menu" type="Node2D" parent="."]
 
@@ -291,6 +302,138 @@ shape = SubResource( 12 )
 [node name="button_to_main_menu" type="TouchScreenButton" parent="pause menu"]
 position = Vector2( 500, 352.981 )
 shape = SubResource( 13 )
+
+[node name="settings menu" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="text_back2" type="Label" parent="settings menu"]
+margin_left = 14.5167
+margin_top = 649.362
+margin_right = 116.517
+margin_bottom = 706.362
+custom_fonts/font = SubResource( 8 )
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_settings" type="Label" parent="settings menu"]
+margin_right = 1280.0
+margin_bottom = 99.0
+custom_fonts/font = SubResource( 1 )
+text = "SETTINGS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_label_music_volume" type="Label" parent="settings menu"]
+margin_left = 50.0
+margin_top = 150.0
+margin_right = 350.0
+margin_bottom = 210.0
+custom_fonts/font = SubResource( 6 )
+text = "Music Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_music_volume" type="Label" parent="settings menu"]
+margin_left = 1100.0
+margin_top = 150.0
+margin_right = 1181.0
+margin_bottom = 210.0
+custom_fonts/font = SubResource( 6 )
+text = "50%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_music_volume_left" type="Label" parent="settings menu"]
+margin_left = 1050.0
+margin_top = 150.0
+margin_right = 1065.0
+margin_bottom = 210.0
+custom_fonts/font = SubResource( 6 )
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_music_volume_right" type="Label" parent="settings menu"]
+margin_left = 1200.0
+margin_top = 150.0
+margin_right = 1215.0
+margin_bottom = 210.0
+custom_fonts/font = SubResource( 6 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_market" type="Label" parent="settings menu"]
+margin_left = 50.0
+margin_top = 260.0
+margin_right = 350.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 6 )
+text = "Pop Sounds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_back_to_main_menu" type="TouchScreenButton" parent="settings menu"]
+position = Vector2( 14.5167, 646.362 )
+shape = SubResource( 14 )
+
+[node name="button_music_decrease" type="TouchScreenButton" parent="settings menu"]
+position = Vector2( 1025.71, 148.244 )
+shape = SubResource( 15 )
+
+[node name="button_music_increase" type="TouchScreenButton" parent="settings menu"]
+position = Vector2( 1182.4, 147.772 )
+shape = SubResource( 15 )
+
+[node name="text_pop_flag" type="Label" parent="settings menu"]
+margin_left = 1100.0
+margin_top = 260.0
+margin_right = 1162.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 6 )
+text = "yes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_pop_left" type="Label" parent="settings menu"]
+margin_left = 1050.33
+margin_top = 260.0
+margin_right = 1065.33
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 6 )
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_pop_right" type="Label" parent="settings menu"]
+margin_left = 1200.33
+margin_top = 260.0
+margin_right = 1215.33
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 6 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_pop_left" type="TouchScreenButton" parent="settings menu"]
+position = Vector2( 1027.31, 258.436 )
+shape = SubResource( 15 )
+
+[node name="button_pop_right" type="TouchScreenButton" parent="settings menu"]
+position = Vector2( 1182.73, 259.225 )
+shape = SubResource( 15 )
 [connection signal="pressed" from="main menu/button_play_main_menu" to="." method="_on_button_play_main_menu_pressed"]
 [connection signal="pressed" from="main menu/button_settings_main_menu" to="." method="_on_button_settings_main_menu_pressed"]
 [connection signal="pressed" from="main menu/button_quit_main_menu" to="." method="_on_button_quit_main_menu_pressed"]
@@ -302,3 +445,8 @@ shape = SubResource( 13 )
 [connection signal="pressed" from="pause menu/button_market2" to="pause menu" method="_on_button_market2_pressed"]
 [connection signal="pressed" from="pause menu/button_continue" to="pause menu" method="_on_button_continue_pressed"]
 [connection signal="pressed" from="pause menu/button_to_main_menu" to="pause menu" method="_on_button_to_main_menu_pressed"]
+[connection signal="pressed" from="settings menu/button_back_to_main_menu" to="." method="_on_button_back_to_main_menu_pressed"]
+[connection signal="pressed" from="settings menu/button_music_decrease" to="settings menu" method="_on_button_music_decrease_pressed"]
+[connection signal="pressed" from="settings menu/button_music_increase" to="settings menu" method="_on_button_music_increase_pressed"]
+[connection signal="pressed" from="settings menu/button_pop_left" to="settings menu" method="_on_button_pop_left_pressed"]
+[connection signal="pressed" from="settings menu/button_pop_right" to="settings menu" method="_on_button_pop_right_pressed"]

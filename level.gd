@@ -30,8 +30,6 @@ func _ready():
 			ball.cell_y = a
 			ball.cell_x = b
 			
-			#ball.color = randi()%4
-			
 			balls[a].append([])
 			balls[a][b] = ball
 			
@@ -45,7 +43,7 @@ func _ready():
 			
 		b = 0
 		a = a + 1
-	balls[5][5].bonus = 1
+	balls[5][5].bonus = 2
 pass
 
 func _on_Ball_hit(pos_x, pos_y):
@@ -78,32 +76,66 @@ func _on_Ball_hit(pos_x, pos_y):
 			#add nearby cells to check
 			x = pos[0]-1
 			y = pos[1]
-			if(check(x,y) and basecolor==cur_ball.color and cur_ball.state=="alive"):
+			if(check(y,x) and basecolor==cur_ball.color and cur_ball.state=="alive"):
 				stack.append([x,y])
 			x = pos[0]+1
 			y = pos[1]
-			if(check(x,y) and basecolor==cur_ball.color and cur_ball.state=="alive"):
+			if(check(y,x) and basecolor==cur_ball.color and cur_ball.state=="alive"):
 				stack.append([x,y])
 			x = pos[0]
 			y = pos[1]-1
-			if(check(x,y) and basecolor==cur_ball.color and cur_ball.state=="alive"):
+			if(check(y,x) and basecolor==cur_ball.color and cur_ball.state=="alive"):
 				stack.append([x,y])
 			x = pos[0]
 			y = pos[1]+1
-			if(check(x,y) and basecolor==cur_ball.color and cur_ball.state=="alive"):
+			if(check(y,x) and basecolor==cur_ball.color and cur_ball.state=="alive"):
 				stack.append([x,y])
 			#end check
 			
-			
-			
-		
-	var count = matched.size()
-	print(count)
+	var matchcount = matched.size()
 	
+	#calc bonuses
+	var bonustoadd = []
+	var count = 0
+	var i
+	
+	#per 5
+	i = matchcount/5
+	while i>0:
+		bonustoadd.append(1)
+		i = i - 1
+	
+	#per 10
+	i = matchcount/10
+	while i>0:
+		bonustoadd.append(2)
+		i = i - 1
+	#per 15
+	
+	#per combo (?)
+	
+	#apply bonuses
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	var matched2 = matched.duplicate(true)
+	
+	if(bonustoadd.size()>0):
+		if(clicked_ball.nextbonus==0):
+			clicked_ball.nextbonus=bonustoadd.pop_back()
+		
+		for ball in matched2:
+			if(bonustoadd.size()>0):
+				if(ball.nextbonus==0):
+					ball.nextbonus=bonustoadd.pop_back()
+	
+	
+	#destroy
 	for v in matched:
 		v.on_death()
 	
-	var score_last = count*5
+	#apply score and combo
+	var score_last = matchcount*5
 	
 	if(lastcolor==basecolor):
 		combo = combo + 1
@@ -112,31 +144,91 @@ func _on_Ball_hit(pos_x, pos_y):
 		combo = 1
 	
 	score_last = score_last*combo
+	score += score_last
+	taps = taps + 1
 	
+	#create score text
 	var text = preload("res://Text.tscn").instance()
 	text.create(str(score_last),2,clicked_ball.position.x,clicked_ball.position.y)
 	add_child(text, true)
 	
-	score += score_last
-	
-	taps = taps + 1
+	#update text on screen
 	text_score.set_text("Score: "+str(score)+"  +"+str(score_last))
 	text_combo.set_text("Combo: "+str(combo))
 	text_taps.set_text("Taps: "+str(taps))
 	
 	pass # Replace with function body.
-	
 
-func check(x,y):
+func check(y,x):
 	if(y>=0 and y<8 and x>=0 and x<16):
 		return true
 	return false
+
+func check2(y,x):
+	if(y>=0 and y<8 and x>=0 and x<16):
+		if(balls[y][x].state=="alive"):
+			return true
+		
+	return false
+
+func _on_Bonus_hit(bonus,pos_x,pos_y):
+	var matched = get_bonus_area(bonus,pos_x,pos_y)
+	var count = matched.size()
+	var clicked_ball = balls[pos_y][pos_x]
 	
+	for v in matched:
+		v.on_death()
+		
+	
+	var score_last = 10 * count
+	
+	var text = preload("res://Text.tscn").instance()
+	text.create(str(score_last),2,clicked_ball.position.x,clicked_ball.position.y-40)
+	add_child(text, true)
+	
+	score += score_last
+	taps = taps + 1
+	
+	text_score.set_text("Score: "+str(score)+"  +"+str(score_last))
+	text_combo.set_text("Combo: "+str(combo))
+	text_taps.set_text("Taps: "+str(taps))
+	pass
+	
+
+func get_bonus_area(bonus,x,y):
+	var t
+	var matched = []
+	
+	if(bonus==1):
+		t = [ [y-1,x-1], [y-1,x], [y-1,x+1],
+			  [y,  x-1],          [y,  x+1],
+			  [y+1,x-1], [y+1,x], [y+1,x+1]
+		]
+		
+		for c in t :
+			if(check2(c[0],c[1])):
+				matched.append(balls[c[0]][c[1]])
+			
+		
+	if(bonus==2):
+		t = [              [y-2,x-1], [y-2,x], [y-2,x+1],
+				[y-1,x-2], [y-1,x-1], [y-1,x], [y-1,x+1], [y-1,x+2],
+				[y,x-2],   [y,x-1],            [y,x+1],   [y,x+2],
+				[y+1,x-2], [y+1,x-1], [y+1,x], [y+1,x+1], [y+1,x+2],
+						   [y+2,x-1], [y+2,x], [y+2,x+1]
+		]
+		
+		for c in t :
+			if(check2(c[0],c[1])):
+				matched.append(balls[c[0]][c[1]])
+			
+		
+	return matched
+
 func prepare_level():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	rng.set_seed(rng.randi_range(1,16))
-	print(Globals)
 	var ball
 	
 	var x = 0
@@ -150,8 +242,8 @@ func prepare_level():
 			x = x + 1
 		y = y + 1
 		x = 0
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 #func _process(delta):
 #	pass
 
@@ -159,4 +251,5 @@ func prepare_level():
 func _on_button_menu_pressed():
 	self.set_deferred("visible",false)
 	$"../pause menu".set_deferred("visible",true)
+	Globals.show_bg()
 	pass # Replace with function body.

@@ -3,8 +3,8 @@
 [ext_resource path="res://things/texture_bubble_white.png" type="Texture" id=1]
 [ext_resource path="res://ball.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 107, 107 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 36.0
 
 [node name="Ball" type="Node2D"]
 script = ExtResource( 2 )
@@ -13,16 +13,21 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 passby_press = true
 
-[node name="DeathTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, 1 )
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 0.273, 0.273 )
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="BlackLayer" type="Sprite" parent="."]
+position = Vector2( 1, 1 )
+scale = Vector2( 0.273, 0.273 )
 texture = ExtResource( 1 )
 centered = false
 __meta__ = {
 "_edit_group_": true
 }
 [connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
-[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
