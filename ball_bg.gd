@@ -17,7 +17,7 @@ func conf(min_,max_,delta,c_r,c_g,c_b,c_a):
 	delta_scale = delta
 	$sprite.set_modulate(Color(c_r,c_g,c_b,c_a))
 
-func _process(delta):
+func _process(_delta):
 	if(cur_scale>max_scale):
 		scale_flag = false
 	elif(cur_scale<min_scale):

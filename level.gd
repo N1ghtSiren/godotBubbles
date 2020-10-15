@@ -11,6 +11,8 @@ onready var text_score = $text_score
 onready var text_combo = $text_combo
 onready var text_taps = $text_taps
 
+onready var SoundVelosiped = $"../SoundVelosiped"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var a = 0
@@ -96,7 +98,6 @@ func _on_Ball_hit(pos_x, pos_y):
 	
 	#calc bonuses
 	var bonustoadd = []
-	var count = 0
 	var i
 	
 	#per 5
@@ -133,6 +134,8 @@ func _on_Ball_hit(pos_x, pos_y):
 	#destroy
 	for v in matched:
 		v.on_death()
+	
+	SoundVelosiped.play()
 	
 	#apply score and combo
 	var score_last = matchcount*5
@@ -178,7 +181,8 @@ func _on_Bonus_hit(bonus,pos_x,pos_y):
 	
 	for v in matched:
 		v.on_death()
-		
+	
+	SoundVelosiped.play()
 	
 	var score_last = 10 * count
 	

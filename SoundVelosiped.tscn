@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sounds/pop.ogg" type="AudioStream" id=1]
+[ext_resource path="res://SoundVelosiped.gd" type="Script" id=2]
+
+[node name="SoundVelosiped" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="pop1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -6.0
+
+[node name="pop2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -6.0
+
+[node name="pop3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -6.0
+
+[node name="pop4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -6.0
+
+[node name="pop5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -6.0

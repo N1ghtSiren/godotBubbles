@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://things/comicsans.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://levels menu.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://pause menu.gd" type="Script" id=5]
 [ext_resource path="res://Background.gd" type="Script" id=6]
 [ext_resource path="res://settings menu.gd" type="Script" id=7]
+[ext_resource path="res://sounds/bgm.ogg" type="AudioStream" id=8]
+[ext_resource path="res://BGM.gd" type="Script" id=9]
+[ext_resource path="res://SoundVelosiped.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -434,6 +437,14 @@ shape = SubResource( 15 )
 [node name="button_pop_right" type="TouchScreenButton" parent="settings menu"]
 position = Vector2( 1182.73, 259.225 )
 shape = SubResource( 15 )
+
+[node name="SoundVelosiped" parent="." instance=ExtResource( 10 )]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+mix_target = 1
+script = ExtResource( 9 )
 [connection signal="pressed" from="main menu/button_play_main_menu" to="." method="_on_button_play_main_menu_pressed"]
 [connection signal="pressed" from="main menu/button_settings_main_menu" to="." method="_on_button_settings_main_menu_pressed"]
 [connection signal="pressed" from="main menu/button_quit_main_menu" to="." method="_on_button_quit_main_menu_pressed"]

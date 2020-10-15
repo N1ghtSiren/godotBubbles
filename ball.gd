@@ -64,7 +64,7 @@ func _ready():
 	update_texture()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(state=="fading"):
 		if(bonus==0):
 			on_state_fading()
@@ -157,7 +157,6 @@ func on_state_fading_bonus1():
 		BlackLayer.position.y = (70.0-(scale.y*256.0))/2
 		BlackLayer.set_scale(Vector2(scale.x+delta_scale_x*3.4,scale.y+delta_scale_y*3.4))
 		if(scale.x>=0.98):
-			print("bonus")
 			emit_signal("bonus1")
 		
 	elif(scale.x>=1):
@@ -197,7 +196,6 @@ func on_state_fading_bonus2():
 		BlackLayer.position.y = (70.0-(scale.y*256.0))/2
 		BlackLayer.set_scale(Vector2(scale.x+delta_scale_x*5.4,scale.y+delta_scale_y*5.4))
 		if(scale.x>=1.46):
-			print("bonus")
 			emit_signal("bonus2")
 		
 	elif(scale.x>=1.48):
@@ -243,3 +241,4 @@ func on_death():
 		state_pre_fading_bonus2()
 	
 	pass # Replace with function body.
+
