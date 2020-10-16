@@ -6,7 +6,11 @@ onready var pop_flag_text = $text_pop_flag
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	music_volume_text.set_text(str(Globals.music_volume)+"%")
+	if(Globals.pop_enabled==true):
+		pop_flag_text.set_text(str("yes"))
+	elif(Globals.pop_enabled==false):
+		pop_flag_text.set_text(str("no"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,18 +34,18 @@ func _on_button_music_increase_pressed():
 func _on_button_pop_left_pressed():
 	if(Globals.pop_enabled==false):
 		Globals.pop_enabled = true
-		pop_flag_text.set_text(str(Globals.pop_enabled))
+		pop_flag_text.set_text(str("yes"))
 	elif(Globals.pop_enabled==true):
 		Globals.pop_enabled = false
-		pop_flag_text.set_text(str(Globals.pop_enabled))
+		pop_flag_text.set_text(str("no"))
 	pass # Replace with function body.
 
 
 func _on_button_pop_right_pressed():
 	if(Globals.pop_enabled==false):
 		Globals.pop_enabled = true
-		pop_flag_text.set_text(str(Globals.pop_enabled))
+		pop_flag_text.set_text(str("yes"))
 	elif(Globals.pop_enabled==true):
 		Globals.pop_enabled = false
-		pop_flag_text.set_text(str(Globals.pop_enabled))
+		pop_flag_text.set_text(str("no"))
 	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://things/comicsans.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://levels menu.gd" type="Script" id=2]
@@ -19,6 +19,9 @@ font_data = ExtResource( 1 )
 size = 40
 font_data = ExtResource( 1 )
 
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 100, 30 )
+
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 60, 30 )
 
@@ -28,12 +31,9 @@ extents = Vector2( 90, 30 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 60, 30 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=10]
 size = 40
 font_data = ExtResource( 1 )
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 70, 30 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 40
@@ -42,12 +42,27 @@ font_data = ExtResource( 1 )
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 60, 35 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 40
-font_data = ExtResource( 1 )
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 80, 35 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 80, 40 )
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 100, 40 )
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 60, 40 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 120, 40 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 70, 30 )
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 80, 30 )
@@ -110,14 +125,30 @@ __meta__ = {
 }
 
 [node name="text_quit" type="Label" parent="main menu"]
-margin_top = 350.0
+margin_top = 450.0
 margin_right = 1280.0
+margin_bottom = 485.0
 custom_fonts/font = SubResource( 2 )
 text = "Quit"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="text_thanksto" type="Label" parent="main menu"]
+margin_top = 350.0
+margin_right = 1280.0
+margin_bottom = 407.0
+custom_fonts/font = SubResource( 2 )
+text = "Thanks to"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_thanksto" type="TouchScreenButton" parent="main menu"]
+position = Vector2( 545, 350 )
+shape = SubResource( 16 )
 
 [node name="button_play_main_menu" type="TouchScreenButton" parent="main menu"]
 position = Vector2( 577.28, 156.203 )
@@ -128,59 +159,33 @@ position = Vector2( 551.624, 255.499 )
 shape = SubResource( 4 )
 
 [node name="button_quit_main_menu" type="TouchScreenButton" parent="main menu"]
-position = Vector2( 579.38, 356.251 )
+position = Vector2( 580, 450 )
 shape = SubResource( 5 )
-
-[node name="play menu" type="Node2D" parent="."]
-
-[node name="text_levels" type="Label" parent="play menu"]
-margin_top = 150.0
-margin_right = 1280.0
-margin_bottom = 45.0
-custom_fonts/font = SubResource( 6 )
-text = "Levels"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="text_market" type="Label" parent="play menu"]
-margin_top = 250.0
-margin_right = 1280.0
-margin_bottom = 45.0
-custom_fonts/font = SubResource( 6 )
-text = "Market"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="text_back" type="Label" parent="play menu"]
-margin_left = -1.25995
-margin_top = 350.0
-margin_right = 1278.74
-margin_bottom = 407.0
-custom_fonts/font = SubResource( 6 )
-text = "Back"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="button_market_play_menu" type="TouchScreenButton" parent="play menu"]
-position = Vector2( 569.135, 255.344 )
-shape = SubResource( 7 )
-
-[node name="button_levels_play_menu" type="TouchScreenButton" parent="play menu"]
-position = Vector2( 580.618, 153.244 )
-shape = SubResource( 3 )
-
-[node name="button_back_play_menu" type="TouchScreenButton" parent="play menu"]
-position = Vector2( 578.07, 352.981 )
-shape = SubResource( 3 )
 
 [node name="levels menu" type="Node2D" parent="."]
 script = ExtResource( 2 )
+
+[node name="text_level" type="Label" parent="levels menu"]
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 153.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 10 )
+text = "Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_level_desc" type="Label" parent="levels menu"]
+margin_left = 20.0
+margin_top = 120.0
+margin_right = 334.303
+margin_bottom = 157.9
+custom_fonts/font = SubResource( 10 )
+text = "Level Description"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="text_back" type="Label" parent="levels menu"]
 margin_left = 14.5167
@@ -197,8 +202,88 @@ __meta__ = {
 position = Vector2( 14.5167, 646.362 )
 shape = SubResource( 9 )
 
+[node name="text_start" type="Label" parent="levels menu"]
+margin_left = 1128.92
+margin_top = 652.19
+margin_right = 1264.92
+margin_bottom = 709.19
+custom_fonts/font = SubResource( 8 )
+text = "START"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_start_levels_menu" type="TouchScreenButton" parent="levels menu"]
+position = Vector2( 1116.19, 646.362 )
+shape = SubResource( 17 )
+
+[node name="thanks to menu" type="Node2D" parent="."]
+
+[node name="text_back" type="Label" parent="thanks to menu"]
+margin_left = 14.5167
+margin_top = 649.362
+margin_right = 116.517
+margin_bottom = 706.362
+custom_fonts/font = SubResource( 8 )
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_thanksto" type="Label" parent="thanks to menu"]
+margin_left = 10.0
+margin_top = 24.0
+margin_right = 1260.0
+margin_bottom = 644.0
+custom_fonts/font = SubResource( 8 )
+text = "Music is used under CC BY 3.0 licence: 
+https://creativecommons.org/licenses/by/3.0/
+
+Timbre - tweaked loopable excerpt 
+https://freesound.org/people/Timbre/sounds/418852/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_back_to_main_menu_from_thanks" type="TouchScreenButton" parent="thanks to menu"]
+position = Vector2( 14.5167, 646.362 )
+shape = SubResource( 9 )
+
 [node name="level" type="Node2D" parent="."]
 script = ExtResource( 4 )
+
+[node name="text_level" type="Label" parent="level"]
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 153.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 10 )
+text = "Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_level_desc" type="Label" parent="level"]
+margin_left = 20.0
+margin_top = 120.0
+margin_right = 342.0
+margin_bottom = 177.0
+custom_fonts/font = SubResource( 10 )
+text = "Level Description"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_try_again" type="Label" parent="level"]
+margin_left = 42.4404
+margin_top = 487.331
+margin_right = 223.44
+margin_bottom = 544.331
+custom_fonts/font = SubResource( 10 )
+text = "Try Again"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="text_score" type="Label" parent="level"]
 margin_top = 650.0
@@ -243,9 +328,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="text_to_main_menu" type="Label" parent="level"]
+margin_left = 442.44
+margin_top = 487.331
+margin_right = 541.44
+margin_bottom = 544.331
+custom_fonts/font = SubResource( 10 )
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_next_level" type="Label" parent="level"]
+margin_left = 792.44
+margin_top = 487.331
+margin_right = 997.44
+margin_bottom = 545.331
+custom_fonts/font = SubResource( 10 )
+text = "Next Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="button_menu" type="TouchScreenButton" parent="level"]
 position = Vector2( 1080, 640 )
 shape = SubResource( 11 )
+
+[node name="button_try_again" type="TouchScreenButton" parent="level"]
+position = Vector2( 36.6047, 485.001 )
+shape = SubResource( 18 )
+
+[node name="button_to_menu" type="TouchScreenButton" parent="level"]
+position = Vector2( 430.382, 482.332 )
+shape = SubResource( 19 )
+
+[node name="button_next_level" type="TouchScreenButton" parent="level"]
+position = Vector2( 777.441, 483.667 )
+shape = SubResource( 20 )
 
 [node name="pause menu" type="Node2D" parent="."]
 script = ExtResource( 5 )
@@ -442,17 +561,19 @@ shape = SubResource( 15 )
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-autoplay = true
 mix_target = 1
 script = ExtResource( 9 )
+[connection signal="pressed" from="main menu/button_thanksto" to="." method="_on_button_thanksto_pressed"]
 [connection signal="pressed" from="main menu/button_play_main_menu" to="." method="_on_button_play_main_menu_pressed"]
 [connection signal="pressed" from="main menu/button_settings_main_menu" to="." method="_on_button_settings_main_menu_pressed"]
 [connection signal="pressed" from="main menu/button_quit_main_menu" to="." method="_on_button_quit_main_menu_pressed"]
-[connection signal="pressed" from="play menu/button_market_play_menu" to="." method="_on_button_market_play_menu_pressed"]
-[connection signal="pressed" from="play menu/button_levels_play_menu" to="." method="_on_button_levels_play_menu_pressed"]
-[connection signal="pressed" from="play menu/button_back_play_menu" to="." method="_on_button_back_play_menu_pressed"]
-[connection signal="pressed" from="levels menu/button_back_levels_menu" to="." method="_on_button_back_levels_menu_pressed"]
+[connection signal="pressed" from="levels menu/button_back_levels_menu" to="levels menu" method="_on_button_back_levels_menu_pressed"]
+[connection signal="pressed" from="levels menu/button_start_levels_menu" to="levels menu" method="_on_button_start_levels_menu_pressed"]
+[connection signal="pressed" from="thanks to menu/button_back_to_main_menu_from_thanks" to="." method="_on_button_back_to_main_menu_from_thanks_pressed"]
 [connection signal="pressed" from="level/button_menu" to="level" method="_on_button_menu_pressed"]
+[connection signal="pressed" from="level/button_try_again" to="level" method="_on_button_try_again_pressed"]
+[connection signal="pressed" from="level/button_to_menu" to="level" method="_on_button_to_menu_pressed"]
+[connection signal="pressed" from="level/button_next_level" to="level" method="_on_button_next_level_pressed"]
 [connection signal="pressed" from="pause menu/button_market2" to="pause menu" method="_on_button_market2_pressed"]
 [connection signal="pressed" from="pause menu/button_continue" to="pause menu" method="_on_button_continue_pressed"]
 [connection signal="pressed" from="pause menu/button_to_main_menu" to="pause menu" method="_on_button_to_main_menu_pressed"]

@@ -11,13 +11,10 @@ var nextbonus = 0
 var bonus = 0
 var color
 
-var texture_normal = preload("res://things/texture_bubble_white.png")
-var texture_bonus_small = preload("res://things/texture_bonus_small.png")
-var texture_bonus_medium = preload("res://things/texture_bonus_medium.png")
-
 onready var button = $TouchScreenButton
 onready var sprite = $Sprite
 onready var BlackLayer = $BlackLayer
+onready var bonusn = $Label
 
 var state
 
@@ -34,11 +31,13 @@ func update_texture():
 	BlackLayer.set_modulate(Color(0, 0, 0, 1))
 	
 	if(bonus==0):
-		sprite.set_texture(texture_normal)
+		bonusn.hide()
 	elif(bonus==1):
-		sprite.set_texture(texture_bonus_small)
+		bonusn.set_text("3")
+		bonusn.show()
 	elif(bonus==2):
-		sprite.set_texture(texture_bonus_medium)
+		bonusn.set_text("5")
+		bonusn.show()
 	
 	if(color==0):
 		sprite.set_modulate(Color(1, 1, 1, 0.7))
@@ -158,6 +157,7 @@ func on_state_fading_bonus1():
 		BlackLayer.set_scale(Vector2(scale.x+delta_scale_x*3.4,scale.y+delta_scale_y*3.4))
 		if(scale.x>=0.98):
 			emit_signal("bonus1")
+			bonusn.hide()
 		
 	elif(scale.x>=1):
 		
@@ -197,6 +197,7 @@ func on_state_fading_bonus2():
 		BlackLayer.set_scale(Vector2(scale.x+delta_scale_x*5.4,scale.y+delta_scale_y*5.4))
 		if(scale.x>=1.46):
 			emit_signal("bonus2")
+			bonusn.hide()
 		
 	elif(scale.x>=1.48):
 		

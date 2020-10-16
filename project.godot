@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://things/globals.gd"
+Levels_db="*res://things/levels_db.gd"
 
 [display]
 

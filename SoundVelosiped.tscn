@@ -9,19 +9,3 @@ script = ExtResource( 2 )
 [node name="pop1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -6.0
-
-[node name="pop2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-volume_db = -6.0
-
-[node name="pop3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-volume_db = -6.0
-
-[node name="pop4" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-volume_db = -6.0
-
-[node name="pop5" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-volume_db = -6.0
