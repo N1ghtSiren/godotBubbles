@@ -22,13 +22,13 @@ var score_to_reach
 var taplimit
 
 func end_game():
-	if(balls.size()>1 and balls[0][0]!=null):
+	if(balls.size()>1):
 		var a = 0
 		var b = 0
-		
 		while a < 8:
 			while b < 16:
-				balls[a][b].queue_free()
+				if(is_instance_valid(balls[a][b])):
+					balls[a][b].queue_free()
 				b = b + 1
 				
 			b = 0
@@ -330,15 +330,14 @@ func update_text(score,score_last,combo,taps):
 	text_taps.set_text("Taps: "+str(taps))
 
 func _on_button_menu_pressed():
-	self.set_deferred("visible",false)
+	set_deferred("visible",false)
 	$"../pause menu".set_deferred("visible",true)
 	Globals.show_bg()
-	pass # Replace with function body.
 
 func _on_button_try_again_pressed():
-	prepare_level(current_level)
 	Globals.hide_bg()
-	pass # Replace with function body.
+	prepare_level(current_level)
+	
 
 func _on_button_to_menu_pressed():
 	end_game()
